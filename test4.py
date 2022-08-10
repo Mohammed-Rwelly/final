@@ -63,15 +63,14 @@ def get_jobs(keyword, num_jobs, verbose, slp_time):
         collected_successfully = False
         print('start')
         try:
-            element = driver.find_element_by_css_selector('[alt="Close"]').click() #clicking to the X.
+            element=driver.find_element(By.CSS_SELECTOR, '[alt="Close"]').click()#clicking to the X.
             print(' x out worked')
         except NoSuchElementException:
             print(' x out failed')
-        #jobbbb=driver.find_element_by_xpath('//*[@id="MainCol"]/div[1]/ul/li[{}]/div[2]/div[3]/div[2]/div[2]'.format(i+1)).text
         try:
-            jobbbb=driver.find_element_by_xpath('//*[@id="MainCol"]/div[1]/ul/li[{}]/div[2]/div[3]/div[2]/div[2]'.format(i+1)).text
+            jobbbb=driver.find_element(By.XPATH,'//*[@id="MainCol"]/div[1]/ul/li[{}]/div[2]/div[3]/div[2]/div[2]'.format(i+1)).text
         except NoSuchElementException:
-            jobbbb=driver.find_element_by_xpath('//*[@id="MainCol"]/div[1]/ul/li[{}]/div[2]/div[2]/div/div[2]'.format(i+1)).text
+            jobbbb=driver.find_element(By.XPATH,'//*[@id="MainCol"]/div[1]/ul/li[{}]/div[2]/div[2]/div/div[2]'.format(i+1)).text
             #print("وينهااااااااااااااااااا")
             pass
             
