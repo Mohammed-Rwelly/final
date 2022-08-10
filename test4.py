@@ -20,7 +20,8 @@ def get_jobs(keyword, num_jobs, verbose, slp_time):
     "--no-sandbox",
     "--disable-dev-shm-usage"]
     for option in options:
-    chrome_options.add_argument(option)
+        chrome_options.add_argument(option)
+    
     '''Gathers jobs as a dataframe, scraped from Glassdoor'''
     options = webdriver.ChromeOptions()
     
