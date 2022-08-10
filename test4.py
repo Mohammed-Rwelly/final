@@ -2,6 +2,7 @@ from selenium.common.exceptions import NoSuchElementException, ElementClickInter
 from selenium import webdriver
 import time
 import pandas as pd
+from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver.chrome.options import Options
@@ -37,7 +38,8 @@ def get_jobs(keyword, num_jobs, verbose, slp_time):
     time.sleep(slp_time)
     #Test for the "Sign Up" prompt and get rid of it.
     try:
-        element = driver.find_element_by_class_name("selected").click()
+        element=driver.find_element(By.CLASS_NAME, "selected").click()
+        #element = driver.find_element_by_class_name("selected").click()
     except ElementClickInterceptedException:
         pass
 
