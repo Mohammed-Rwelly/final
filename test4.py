@@ -55,7 +55,7 @@ def get_jobs(keyword, num_jobs, verbose, slp_time):
    # print("job_post = ",len(job_buttons1))
    # print("job_href = ",len(job_buttons))
     job=[]
-    for i in range(3):
+    for i in range(5):
        # print("Progress: {}".format("" + str(len(jobs)) + "/" + str(num_jobs)))
         job_buttons1[i].click()  #You might
         print(job_buttons[i].get_attribute("href"))
