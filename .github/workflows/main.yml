@@ -10,7 +10,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.9'
       - name: Installed package list
         run: apt list --installed
       - name: Remove Chrome
@@ -19,6 +19,6 @@ jobs:
       # - name: Install software
       #   run: sudo apt install -y chromium-browser
       - name: Install all necessary packages
-        run: pip install requests pandas webdriver-manager selenium 
+        run: pip install requests pandas webdriver-manager selenium==3.141.0 
       - name: Run the scraping script
         run: python test4.py
