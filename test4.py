@@ -50,8 +50,8 @@ def get_jobs(keyword, num_jobs, verbose, slp_time):
      
     except NoSuchElementException:
         print(' x out failed')
-    job_buttons1 = driver.find_elements_by_xpath("//*[@id='MainCol']/div[1]/ul/li")
-    job_buttons = driver.find_elements_by_xpath('//*[@id="MainCol"]/div[1]/ul/li/div[2]/a')
+    job_buttons1 = driver.find_elements(By.XPATH,"//*[@id='MainCol']/div[1]/ul/li")
+    job_buttons = driver.find_elements(By.XPATH,'//*[@id="MainCol"]/div[1]/ul/li/div[2]/a')
    # print("job_post = ",len(job_buttons1))
    # print("job_href = ",len(job_buttons))
     job=[]
