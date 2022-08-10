@@ -39,14 +39,13 @@ def get_jobs(keyword, num_jobs, verbose, slp_time):
     #Test for the "Sign Up" prompt and get rid of it.
     try:
         element=driver.find_element(By.CLASS_NAME, "selected").click()
-        #element = driver.find_element_by_class_name("selected").click()
     except ElementClickInterceptedException:
         pass
 
     time.sleep(5)
 
     try:
-        element = driver.find_element_by_css_selector('[alt="Close"]').click() #clicking to the X.
+        element=driver.find_element(By.CSS_SELECTOR, '[alt="Close"]').click()#clicking to the X.
         print(' x out worked')
      
     except NoSuchElementException:
