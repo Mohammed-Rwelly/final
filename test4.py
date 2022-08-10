@@ -2,13 +2,30 @@ from selenium.common.exceptions import NoSuchElementException, ElementClickInter
 from selenium import webdriver
 import time
 import pandas as pd
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.utils import ChromeType
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 
-def get_jobs(keyword, num_jobs, verbose, path, slp_time):
-    
+def get_jobs(keyword, num_jobs, verbose, slp_time):
+    chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+    chrome_options = Options()
+    options = [
+    "--headless",
+    "--disable-gpu",
+    "--window-size=1920,1200",
+    "--ignore-certificate-errors",
+    "--disable-extensions",
+    "--no-sandbox",
+    "--disable-dev-shm-usage"]
+    for option in options:
+    chrome_options.add_argument(option)
     '''Gathers jobs as a dataframe, scraped from Glassdoor'''
     options = webdriver.ChromeOptions()
-    driver = webdriver.Chrome(executable_path=path, options=options)
+    
+    driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+    
     driver.set_window_size(1120, 1000)
     url='https://www.glassdoor.com/Job/turkey-data-jobs-SRCH_IL.0,6_IN238_KO7,11.htm?clickSource=searchBox'
     #url ="https://www.glassdoor.com/Job/foster-city-ca-"+keyword+"-jobs-SRCH_IL.0,14_IC1163997_KO15,29.htm?src=GD_JOB_AD&srs=ALL_RESULTS&jl=1007891100315&ao=1136043&s=345&guid=00000181bfeda65bb92afaacd021b371&pos=101&t=SR-JOBS-HR&vt=w&cs=1_16d0396a&cb=1656782432051&jobListingId=1007891100315&jrtk=3-0-1g6vur9k4kcle801-1g6vur9kfjoqf800-76aaad84e43fcb11-"
@@ -59,7 +76,7 @@ def get_jobs(keyword, num_jobs, verbose, path, slp_time):
         job.append({"job_id":jobbbb})
     return pd.DataFrame(job)                    
  
-df=get_jobs('Data Scientist', 2, False, 'chromedriver.exe', 10)
+df=get_jobs('Data Scientist', 2, False, 10)
 df.to_csv("data_final.csv",index=True) 
 
 
