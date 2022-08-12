@@ -45,7 +45,7 @@ def get_jobs(keyword, num_jobs, verbose, slp_time):
     for i in range(3):
        # print("Progress: {}".format("" + str(len(jobs)) + "/" + str(num_jobs)))
         job_buttons1[i].click()  #You might
-        print(job_buttons[i].get_attribute("href"))
+        print(job_buttons[i]1.get_attribute("href"))
         time.sleep(10)
         collected_successfully = False
         try:
