@@ -9,8 +9,8 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 
 
-def get_jobs(keyword, num_jobs, verbose, slp_time):
-    chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+def get_jobs(keyword, num_jobs, verbose, slp_time,path):
+    #chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
     chrome_options = Options()
     options = [
     "--headless",
@@ -26,7 +26,8 @@ def get_jobs(keyword, num_jobs, verbose, slp_time):
     '''Gathers jobs as a dataframe, scraped from Glassdoor'''
     options = webdriver.ChromeOptions()
     
-    driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+   # driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+    driver = webdriver.Chrome(executable_path=path, options=chrome_options)
     
     driver.set_window_size(1120, 1000)
     url='https://www.glassdoor.com/Job/turkey-data-jobs-SRCH_IL.0,6_IN238_KO7,11.htm?clickSource=searchBox'
@@ -76,8 +77,8 @@ def get_jobs(keyword, num_jobs, verbose, slp_time):
             
         job.append({"job_id":jobbbb})
     return pd.DataFrame(job)                    
- 
-df=get_jobs('Data Scientist', 2, False, 10)
+path='chromedriver.exe'
+df=get_jobs('Data Scientist', 2, False, 10,path)
 df.to_csv("data_final.csv",index=True) 
 
 
